@@ -43,3 +43,11 @@ services:
 
 volumes:
   db_data:
+
+jekyll:
+    image: jekyll/jekyll:pages
+    command: jekyll serve --watch --incremental
+    ports:
+        - 8000:8000
+    volumes:
+        - .:/srv/jekyll
