@@ -4,6 +4,9 @@ services:
   web:
     image: php:8.0-apache
     container_name: php_web
+    build:
+      context: .
+      dockerfile: Dockerfile-php
     restart: always
     ports:
       - "8000:80"
@@ -13,14 +16,16 @@ services:
       - db
 
   db:
+    # Bart beun oplossing voor MAC OS
+    # platform: linux/x86_64
     image: mysql:5.7
     container_name: mysql_db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_ROOT_PASSWORD: 674392
       MYSQL_DATABASE: mydatabase
-      MYSQL_USER: tvm
-      MYSQL_PASSWORD: 060827
+      MYSQL_USER: thomvm
+      MYSQL_PASSWORD: 7830984
     volumes:
       - db_data:/var/lib/mysql
 
@@ -32,7 +37,7 @@ services:
       - "8080:80"
     environment:
       PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_ROOT_PASSWORD: 674392
     depends_on:
       - db
 
