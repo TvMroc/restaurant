@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="form">
+        <div class="form login">
             <h1>Login</h1>
             <form name="login" action="login_logic.php" method="post">
                 <div>

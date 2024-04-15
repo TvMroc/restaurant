@@ -74,6 +74,8 @@ header {
     align-items: center;
 }
 .info {
+    display: flex;
+    flex-direction: column;
     width: 500px;
     height: 500px;
     background-color: #C29641;
@@ -99,18 +101,16 @@ header {
     color: #B81F1F;
 }
 .shop {
-    width: 1700px;
-}
-.shop-div {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 300px;
+    width: 90dvw;
+    padding: 50px;
+    margin-bottom: 200px;
+    flex-wrap: wrap;
 }
 .shop-item {
     width: 200px;
     height: 200px;
+    margin: 43.4px;
     border-radius: 25px;
     background-color:#B81F1F;
     color: rgba(0, 0, 0, 0);
@@ -130,6 +130,9 @@ header {
 }
 
 /* Login */
+.login {
+    margin-top: 35vh;
+}
 .form {
     display: flex;
     flex-direction: column;
@@ -137,7 +140,7 @@ header {
     border-radius: 15px;
     font-size: 20px;
     background-color: rgba(15, 15, 15, 0.414);
-    margin-top: 35vh;
+    margin-bottom: 5vh;
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -199,7 +202,7 @@ header {
     height: 20vh;
 }
 .del-reveal {
-    width: 56px;
+    width: 57px;
     height: 30px;
     padding: 2px 5px;
     background-color: #B81F1F;
@@ -208,4 +211,35 @@ header {
 }
 #del {
     display: none;
+}
+.logout {
+    color: white;
+    font-size: 20px;
+    margin-bottom: 50px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 20px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Admin panel */
+.product-list {
+    display: flex;
+    flex-direction: row;
+    padding: 50px;
+    margin-bottom: 200px;
+    flex-wrap: wrap;
+
+}
+.product-list div {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 20px 20px rgba(0, 0, 0, 0.3);
+}
+.form-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 50px;
 }

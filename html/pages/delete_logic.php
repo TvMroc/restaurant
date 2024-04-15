@@ -10,22 +10,12 @@ if (empty($_POST["username"]) || empty($_POST["password"])) {
 $username = $_POST["username"];
 $password = $_POST["password"];
 
-$stmt = $connection->prepare("SELECT * FROM users WHERE username=:user AND password=:pass");
+$sql = "DELETE FROM users WHERE username=:user AND password=:pass";
+$stmt = $connection->prepare($sql);
 $stmt->execute(['user' => $username, 'pass' => $password]);
-$user = $stmt->fetch(); 
-
-if (!$user) {
-    header("Location: login.php");
-    exit(); 
-} else {
-    $id = $user['id'];
-    $sql = "DELETE FROM users WHERE id = :id";
-    $stmt = $connection->prepare($sql);
-    $stmt->execute(['id' => $id]);
     
-    unset($_SESSION);
-    session_destroy();
-    header("Location: login.php");
-    exit();
-}
+session_unset();
+session_destroy();
+header("Location: ../index.php");
+exit();
 ?>

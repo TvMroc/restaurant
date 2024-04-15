@@ -26,40 +26,25 @@
     <div class="container">
         <div class="info">
             <div class="pizza">
-                <p class="pizza-txt">Discover pizza perfection at our restaurant. Where every bite is a delight!</p>
+                <p class="pizza-txt">Discover pizza perfection at our restaurant, where every bite is a delight!</p>
             </div>
         </div>
         <div class="shop">
-            <div class="shop-div">
-                <div id="shop-item1" class="shop-item">
-                    <img src="./images/pizzam.png">
-                    <p>Pizza margharita<br>-Fresh tomatoes<br>-Mozzerela<br>-Pizza dough<br>-Mint leaves<br>€4,49</p>
-                </div>
-                <div id="shop-item2" class="shop-item">
-                    <img src="./images/pizzap.png">
-                    <p>Pizza pepperoni<br>-Fresh tomatoes<br>-Mozzerela<br>-Pizza dough<br>-Pepperoni<br>€4,99</p>
-                </div>
-                <div class="shop-item"></div>
-                <div class="shop-item"></div>
-                <div class="shop-item"></div>
-                <div class="shop-item"></div>
-            </div>
-            <div class="shop-div">
-                <div class="shop-item"></div>
-                <div class="shop-item"></div>
-                <div class="shop-item"></div>
-                <div class="shop-item"></div>
-                <div class="shop-item"></div>
-                <div class="shop-item"></div>
-            </div>
-            <div class="shop-div">
-                <div class="shop-item"></div>
-                <div class="shop-item"></div>
-                <div class="shop-item"></div>
-                <div class="shop-item"></div>
-                <div class="shop-item"></div>
-                <div class="shop-item"></div>
-            </div>
+            
+<?php
+include 'pages/conn.php';
+
+$sql = 'SELECT id, name, image, description FROM products';
+$stmt = $connection->query($sql);
+
+while ($row = $stmt->fetch()) {
+    echo '<div class="shop-item">';
+    echo '<img src="../images/' . $row['image'] . '">';
+    echo $row['name'] . $row['description'];
+    echo '€' . $row['image'];
+    echo '</div>';
+}
+?>
         </div>
     </div>
 </body>

@@ -27,6 +27,10 @@ if (!isset($_SESSION["user"])) {
                 <input type="text" id="newusername" name="newusername" placeholder="John" required>
             </div>
             <div>
+                <label for="useremail">Email:</label>
+                <input type="email" id="useremail" name="useremail" placeholder="example@example.com" required>
+            </div>
+            <div>
                 <label for="newuserpassword">Password:</label>
                 <input type="password" id="newuserpassword" name="newuserpassword" placeholder="!12345689_" required>
             </div>
@@ -34,8 +38,30 @@ if (!isset($_SESSION["user"])) {
         </form>
     </div>
     <div class="form">
+        <h1>Change email</h1>
+        <form name="email" action="email_logic.php" method="post">
+            <div>
+                <label for="mailusername">Username:</label>
+                <input type="text" id="mailusername" name="mailusername" placeholder="John" required>
+            </div>
+            <div>
+                <label for="email"> New email:</label>
+                <input type="email" id="email" name="email" placeholder="example@example.com" required>
+            </div>
+            <div>
+                <label for="mailpassword">Password:</label>
+                <input type="password" id="mailpassword" name="mailpassword" placeholder="!12345689_" required>
+            </div>
+            <input type="submit" value="Update">
+        </form>
+    </div>
+    <div class="form">
         <h1>Change password</h1>
-        <form name="password" action="password_logic.php" method="post">
+        <form name="password" action="password_logic.php" method="post">        
+            <div>
+                <label for="passemail">Email:</label>
+                <input type="email" id="passemail" name="passemail" placeholder="example@example.com" required>
+            </div>
             <div>
                 <label for="oldpassword">Old password:</label>
                 <input type="password" id="oldpassword" name="oldpassword" placeholder="!12345689_" required>
@@ -64,7 +90,7 @@ if (!isset($_SESSION["user"])) {
                 <input type="submit" value="Delete">
             </div>
         </form>
-    <div>
-    <a href="logout.php">Logout</a>
+    </div>
+    <a class="logout" href="logout.php">Logout</a>
 </body>
 </html>

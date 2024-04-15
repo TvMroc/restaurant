@@ -29,5 +29,27 @@ if (!isset($_SESSION["user"])) {
             <a href="account.php">Account</a>
         </div>
     </header>
+    <div class="container">
+        <div class="info">
+            <div class="pizza">
+                <p class="pizza-txt">Discover pizza perfection at our restaurant. Where every bite is a delight!</p>
+            </div>
+        </div>
+        <div class="shop">    
+<?php
+include 'conn.php';
+
+$sql = 'SELECT id, name, image, description FROM products';
+$stmt = $connection->query($sql);
+
+while ($row = $stmt->fetch()) {
+    echo '<div class="shop-item">';
+    echo '<img src="../images/' . $row['image'] . '">';
+    echo '<p>' . $row['name'] . '<br>' . $row['description'] . '</p>';
+    echo '</div>';
+}
+?>
+        </div>
+    </div>
 </body>
 </html>
