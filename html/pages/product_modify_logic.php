@@ -2,18 +2,19 @@
 session_start();
 include 'conn.php';
 
-if (empty($_POST["id"]) || empty($_POST["image"]) || empty($_POST["ingredients"]) || empty($_POST["price"])) {
+if (empty($_POST["productname"]) || empty($_POST["productid"]) || empty($_POST["modimage"]) || empty($_POST["modingredients"]) || empty($_POST["modprice"])) {
     header("Location: upper.php");
     exit();
 }
 
-$productid = $_POST["id"];
-$image = $_POST["image"];
-$ingredients = $_POST["ingredients"];
-$price= $_POST["price"];
+$productname = $_POST["productname"];
+$productid = $_POST["productid"];
+$image = $_POST["modimage"];
+$ingredients = $_POST["modingredients"];
+$price = $_POST["modprice"];
 
-$stmt = $connection->prepare("UPDATE products SET image=:img, description=:ingred, price=:prc WHERE id=:pid");
-$result = $stmt->execute(['pid' => $productid, 'img' => $image, 'ingred' => $ingredients, 'prc' => $price]);
+$stmt = $connection->prepare("UPDATE products SET name=:pname, image=:img, description=:ingred, price=:prc WHERE id=:pid");
+$result = $stmt->execute(['pid' => $productid, 'pname' => $productname, 'img' => $image, 'ingred' => $ingredients, 'prc' => $price]);
 
 header("Location: upper.php");
 ?>

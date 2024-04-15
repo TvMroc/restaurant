@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION["user"])) {
+if (!isset($_SESSION["user"]) || $_SESSION["role"] > 2) {
     header("Location: login.php");
     exit();
 }
@@ -22,20 +22,24 @@ if (!isset($_SESSION["user"])) {
             <h1>Modify products</h1>
             <form name="product" action="product_modify_logic.php" method="post">
                 <div>
-                    <label for="id">Product id:</label>
-                    <input type="text" id="id" name="id" placeholder="1" required>
+                    <label for="productid">Product id:</label>
+                    <input type="text" id="productid" name="productid" placeholder="1" required>
                 </div>
                 <div>
-                    <label for="image">Image:</label>
-                    <input type="text" id="image" name="image" placeholder="pizza.png" required>
+                    <label for="productname">Name:</label>
+                    <input type="text" id="productname" name="productname" placeholder="pizza" required>
                 </div>
                 <div>
-                    <label for="ingredients">Ingredients:</label>
-                    <input type="text" id="ingredients" name="ingredients" required>
+                    <label for="modimage">Image:</label>
+                    <input type="text" id="modimage" name="modimage" placeholder="pizza.png" required>
                 </div>
                 <div>
-                    <label for="price">Price:</label>
-                    <input type="text" id="price" name="price" required>
+                    <label for="modingredients">Ingredients:</label>
+                    <input type="text" id="modingredients" name="modingredients" required>
+                </div>
+                <div>
+                    <label for="modprice">Price:</label>
+                    <input type="text" id="modprice" name="modprice" required>
                 </div>
                 <input type="submit" value="Update">
             </form>
@@ -52,10 +56,10 @@ if (!isset($_SESSION["user"])) {
         </div>
         <div class="form">
             <h1>Create products</h1>
-            <form name="product" action="product_delete_logic.php" method="post">
+            <form name="product" action="product_create_logic.php" method="post">
                 <div>
-                    <label for="id">Product id:</label>
-                    <input type="text" id="id" name="id" placeholder="1" required>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="pizza" required>
                 </div>
                 <div>
                     <label for="image">Image:</label>
@@ -77,7 +81,7 @@ if (!isset($_SESSION["user"])) {
 <?php
 include 'conn.php';
 
-$sql = 'SELECT id, name, image, description FROM products';
+$sql = 'SELECT id, name, image, description, price FROM products';
 $stmt = $connection->query($sql);
 
 while ($row = $stmt->fetch()) {
@@ -85,6 +89,7 @@ while ($row = $stmt->fetch()) {
     echo '<p>' . $row['id'] . '</p>';
     echo '<p>' . $row['image'] . '</p>';
     echo '<p>' . $row['name'] . '</p><p>' . $row['description'] . '</p>';
+    echo '<p>' . $row['price'] . '<p>';
     echo '</div>';
 }
 ?>

@@ -7,6 +7,7 @@ if (empty($_POST["username"]) || empty($_POST["password"])) {
     exit();
 }
  
+$role = 1;
 $username = $_POST["username"];
 $password = $_POST["password"];
  
