@@ -20,7 +20,7 @@
                 <p class="pizza-txt">Discover pizza perfection at our restaurant, where every bite is a delight!</p>
             </div>
         </div>
-        <input type="text" placeholder="search" id="search" onkeyup="shopSearch()">
+        <input class="search" type="text" placeholder="search" id="search" onkeyup="shopSearch('shop-item')">
         <div class="shop">
 <?php
 include 'pages/conn.php';

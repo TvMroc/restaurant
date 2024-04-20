@@ -27,7 +27,7 @@ if (!isset($_SESSION["user"])) {
                 <p class="pizza-txt">Discover pizza perfection at our restaurant. Where every bite is a delight!</p>
             </div>
         </div>
-        <input type="text" placeholder="search" id="search" onkeyup="shopSearch('shop-item')">
+        <input class="search"type="text" placeholder="search" id="search" onkeyup="shopSearch('shop-item')">
         <div class="shop">
 <?php
 include 'conn.php';
