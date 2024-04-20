@@ -18,7 +18,7 @@ if (!isset($_SESSION["user"])) {
     <script src="../js/delete.js"></script>
 </head>
 <body class="account">
-    <a class="back" href="dashboard.php">← Back<a>
+    <a class="back" onclick="history.back()">← Back<a>
     <div class="form">
         <h1>Change username</h1>
         <form name="username" action="username_logic.php" method="post">

@@ -3,7 +3,7 @@ session_start();
 include 'conn.php';
  
 if (empty($_POST["name"]) || empty($_POST["image"]) || empty($_POST["ingredients"]) || empty($_POST["price"])) {
-    header("Location: upper.php");
+    header("Location: upper_dashboard.php");
     exit();
 }
 
@@ -20,5 +20,5 @@ $stmt->bindParam(":pdescription", $description);
 $stmt->bindParam(":pprice", $price);
 $stmt->execute();
 
-header("Location: upper.php");
+header("Location: upper_dashboard.php");
 ?>

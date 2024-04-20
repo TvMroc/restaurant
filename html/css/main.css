@@ -32,15 +32,15 @@ header {
     height: 150px;
     background-color: rgba(30, 30, 30, 0.66);
     border-radius: 150px;
-    transition: rotate 10s;
+    transition: rotate 0.7s;
 }
 .logo img {
     width: 140px;
     margin: -4px 5px;
 }
 .logo:hover {
-    transition: rotate 50s;
-    rotate: 3600deg;
+    transition: rotate 2.5s;
+    rotate: 360deg;
 }
 .nav {
     display: flex;
@@ -57,6 +57,7 @@ header {
 .nav a {
     width: 150px;
     font-size: 32px;
+    color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     transition: color 0.3s;
 }
@@ -64,7 +65,7 @@ header {
     color: rgb(171, 171, 171);
 }
 .spacer {
-    width: 10vw;
+    width: auto;
     height: 100px;
 }
 
@@ -221,7 +222,7 @@ header {
     box-shadow: 0px 0px 20px 20px rgba(0, 0, 0, 0.25);
 }
 
-/* Admin panel */
+/* Admin dashboard */
 .product-list {
     display: flex;
     flex-direction: row;
@@ -237,9 +238,15 @@ header {
     background-color: rgba(0, 0, 0, 0.3);
     box-shadow: 0px 0px 20px 20px rgba(0, 0, 0, 0.3);
 }
+.product-list a {
+    color: white;
+}
 .form-list {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 50px;
+}
+.search {
+    margin-left: 50px;
 }

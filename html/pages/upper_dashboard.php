@@ -1,8 +1,23 @@
 <?php
 session_start();
-if (!isset($_SESSION["user"]) || $_SESSION["role"] > 2) {
+if (!isset($_SESSION["user"])  || $_SESSION["role"] < 2) {
     header("Location: login.php");
     exit();
+}
+?>
+<?php
+$id = "";
+$name = "";
+$image = "";
+$ingredients = "";
+$price = "";
+
+if (isset($_GET['id'])){
+    $id = $_GET['id'];
+    $name = $_GET['name'];
+    $image = $_GET['image'];
+    $ingredients = $_GET['ingredients'];
+    $price = $_GET['price'];
 }
 ?>
 <html lang="en">
@@ -15,31 +30,45 @@ if (!isset($_SESSION["user"]) || $_SESSION["role"] > 2) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Julee&family=VT323&display=swap" rel="stylesheet">
     <script src="../js/delete.js"></script>
+    <script src="../js/shop.js"></script>
 </head>
 <body>
+    <?php
+    include 'header.php';
+    ?>
     <div class="form-list">
         <div class="form">
             <h1>Modify products</h1>
             <form name="product" action="product_modify_logic.php" method="post">
                 <div>
                     <label for="productid">Product id:</label>
-                    <input type="text" id="productid" name="productid" placeholder="1" required>
+                    <?php
+                    echo '<input value="'.$id.'" type="text" id="productid" name="productid" placeholder="1" required>';
+                    ?>
                 </div>
                 <div>
                     <label for="productname">Name:</label>
-                    <input type="text" id="productname" name="productname" placeholder="pizza" required>
+                    <?php
+                    echo '<input value="'.$name.'" type="text" id="productname" name="productname" placeholder="pizza" required>';
+                    ?>
                 </div>
                 <div>
                     <label for="modimage">Image:</label>
-                    <input type="text" id="modimage" name="modimage" placeholder="pizza.png" required>
+                    <?php
+                    echo '<input value="'.$image.'" type="text" id="modimage" name="modimage" placeholder="pizza.png" required>';
+                    ?>
                 </div>
                 <div>
                     <label for="modingredients">Ingredients:</label>
-                    <input type="text" id="modingredients" name="modingredients" required>
+                    <?php
+                    echo '<input value="'.$ingredients.'" type="text" id="modingredients" name="modingredients" required>';
+                    ?>
                 </div>
                 <div>
                     <label for="modprice">Price:</label>
-                    <input type="text" id="modprice" name="modprice" required>
+                    <?php
+                    echo '<input value="'.$price.'" type="text" id="modprice" name="modprice" required>';
+                    ?>
                 </div>
                 <input type="submit" value="Update">
             </form>
@@ -49,7 +78,9 @@ if (!isset($_SESSION["user"]) || $_SESSION["role"] > 2) {
             <form name="product" action="product_delete_logic.php" method="post">
                 <div>
                     <label for="delid">Product id:</label>
-                    <input type="text" id="delid" name="delid" placeholder="1" required>
+                    <?php
+                    echo '<input value="'.$id.'" type="text" id="delid" name="delid" placeholder="1" required>';
+                    ?>
                 </div>
                 <input type="submit" value="delete">
             </form>
@@ -59,24 +90,33 @@ if (!isset($_SESSION["user"]) || $_SESSION["role"] > 2) {
             <form name="product" action="product_create_logic.php" method="post">
                 <div>
                     <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" placeholder="pizza" required>
+                    <?php
+                    echo '<input value="'.$name.'" type="text" id="name" name="name" placeholder="pizza" required>';
+                    ?>
                 </div>
                 <div>
                     <label for="image">Image:</label>
-                    <input type="text" id="image" name="image" placeholder="pizza.png" required>
+                    <?php
+                    echo '<input value="'.$image.'" type="text" id="image" name="image" placeholder="pizza.png" required>';
+                    ?>
                 </div>
                 <div>
                     <label for="ingredients">Ingredients:</label>
-                    <input type="text" id="ingredients" name="ingredients" required>
+                    <?php
+                    echo '<input value="'.$ingredients.'" type="text" id="ingredients" name="ingredients" required>';
+                    ?>
                 </div>
                 <div>
                     <label for="price">Price:</label>
-                    <input type="text" id="price" name="price" required>
+                    <?php
+                    echo '<input value="'.$price.'" type="text" id="price" name="price" required>';
+                    ?>
                 </div>
                 <input type="submit" value="Create">
             </form>
         </div>
-    </div>    
+    </div>
+    <input class="search" type="text" placeholder="search" id="search" onkeyup="shopSearch('product')">
     <div class="product-list">
 <?php
 include 'conn.php';
@@ -85,11 +125,12 @@ $sql = 'SELECT id, name, image, description, price FROM products';
 $stmt = $connection->query($sql);
 
 while ($row = $stmt->fetch()) {
-    echo '<div>';
+    echo '<div id="' . $row['name'] . '" class="product">';
     echo '<p>' . $row['id'] . '</p>';
     echo '<p>' . $row['image'] . '</p>';
     echo '<p>' . $row['name'] . '</p><p>' . $row['description'] . '</p>';
     echo '<p>' . $row['price'] . '<p>';
+    echo '<a href="upper_dashboard.php?id='.$row['id'].'&name='.$row['name'].'&image='.$row['image'].'&ingredients='.$row['description'].'&price='.$row['price'].'">Select</a>';
     echo '</div>';
 }
 ?>
